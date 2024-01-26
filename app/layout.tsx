@@ -19,7 +19,14 @@ export default function RootLayout({
             <body>
                 <ThemeProvider theme={darkTheme}>
                     <CssBaseline />
-                    <div style={{ marginTop: "75px" }}>{children}</div>
+                    <div
+                        style={{
+                            marginTop: "75px",
+                            padding: "0px 48px 0px 48px",
+                        }}
+                    >
+                        {children}
+                    </div>
                 </ThemeProvider>
             </body>
         </html>
