@@ -1,12 +1,13 @@
 import { getSubsectionById, getSubsectionTitleById } from "@/db/queries";
 import Divider from "@mui/material/Divider";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import PageItem from "@/components/subsection-page/PageItem";
 import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
+import SubsectionContainer from "@/components/subsection-page/SubsectionContainer";
 
 export default async function SubsectionPage({
     params,
@@ -28,7 +29,7 @@ export default async function SubsectionPage({
             await getSubsectionTitleById(next_subsection);
 
         return (
-            <Stack spacing={4}>
+            <SubsectionContainer>
                 <Box>
                     <Typography variant="h4" component="h2">
                         {subsection_id}
@@ -59,7 +60,7 @@ export default async function SubsectionPage({
                         endIcon={<ArrowForwardIcon />}
                     >{`Next: ${nextSubsectionTitle}`}</Button>
                 </Box>
-            </Stack>
+            </SubsectionContainer>
         );
     } else {
         return <h1>Cannot load subsection</h1>;

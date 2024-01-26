@@ -3,6 +3,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme } from "@/styles/darkTheme";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
+import { useReactToPrint } from "react-to-print";
 
 export const metadata: Metadata = {
     title: "Intermatik 2",
