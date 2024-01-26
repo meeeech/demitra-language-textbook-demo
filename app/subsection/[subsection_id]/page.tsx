@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import PageItem from "@/components/subsection-page/PageItem";
 import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default async function SubsectionPage({
     params,
@@ -36,10 +37,23 @@ export default async function SubsectionPage({
                 {page_items?.map((item) => (
                     <PageItem key={item.order} item={item} />
                 ))}
-                <Button
-                    href={`/subsection/${next_subsection}`}
-                    endIcon={<ArrowForwardIcon />}
-                >{`Next: ${nextSubsectionTitle}`}</Button>
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    <Button
+                        startIcon={<ArrowBackIcon />}
+                        href={`/${subsection_id.substring(0, 1)}`}
+                    >
+                        Back to Unit Overview
+                    </Button>
+                    <Button
+                        href={`/subsection/${next_subsection}`}
+                        endIcon={<ArrowForwardIcon />}
+                    >{`Next: ${nextSubsectionTitle}`}</Button>
+                </Box>
             </Stack>
         );
     } else {
