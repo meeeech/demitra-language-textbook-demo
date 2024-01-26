@@ -1,4 +1,3 @@
-"use client";
 import { getSubsectionById, getSubsectionTitleById } from "@/db/queries";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
