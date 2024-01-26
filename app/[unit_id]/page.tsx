@@ -1,3 +1,4 @@
+"use client";
 import Stack from "@mui/material/Stack";
 import { getUnitById } from "@/db/queries";
 import Typography from "@mui/material/Typography";
