@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model page_items {
+  page_item_id  BigInt         @id @unique @default(autoincrement())
+  subsection_id String
+  order         Int            @db.SmallInt
+  content       Json           @db.Json
+  type          page_item_type
+  title         String?
+  subsection    subsections    @relation(fields: [subsection_id], references: [subsection_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model sections {
+  section_id  String        @id(map: "section_pkey")
+  unit_id     String
+  title       String
+  units       units         @relation(fields: [unit_id], references: [unit_id], onDelete: NoAction, onUpdate: NoAction)
+  subsections subsections[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model subsections {
+  subsection_id   String       @id(map: "subsection_pkey")
+  section_id      String
+  title_en        String
+  title_frgn      String
+  next_subsection String
+  page_items      page_items[]
+  sections        sections     @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model units {
+  unit_id          String     @id(map: "Units_pkey")
+  title            String     @default("")
+  unit_frgn_prefix String     @default("Kapitel")
+  sections         sections[]
+}
+
+enum page_item_type {
+  paragraph
+  audio_table
+  plain_table
+  text
+}
