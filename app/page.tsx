@@ -1,4 +1,3 @@
-"use client";
 import { getAllUnits } from "@/db/queries";
 import UnitCard from "@/components/home-page/UnitCard";
 import Grid from "@mui/material/Grid";

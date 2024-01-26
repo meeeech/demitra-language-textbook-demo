@@ -1,4 +1,3 @@
-"use client";
 import Typography from "@mui/material/Typography";
 import parse from "html-react-parser";
 import "@/styles/text.css";

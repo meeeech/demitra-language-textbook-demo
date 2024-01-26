@@ -1,4 +1,3 @@
-"use client";
 import AudioTable from "./page-item-types/AudioTable";
 import Paragraph from "./page-item-types/Paragraph";
 import PlainTable from "./page-item-types/PlainTable";
