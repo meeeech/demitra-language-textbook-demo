@@ -1,3 +1,4 @@
+"use client";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@mui/material/styles";
 import { darkTheme } from "@/styles/darkTheme";
