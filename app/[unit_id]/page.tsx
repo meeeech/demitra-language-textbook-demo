@@ -18,7 +18,8 @@ export default async function UnitPage({
             <Box>
                 <Typography
                     gutterBottom
-                    variant="h2"
+                    variant="h3"
+                    component="h1"
                 >{`${unit.unit_frgn_prefix} ${unit.unit_id}`}</Typography>
             </Box>
             <Box>

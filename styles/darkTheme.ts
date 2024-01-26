@@ -10,5 +10,6 @@ export const darkTheme = createTheme({
     },
     typography: {
         fontFamily: quicksand.style.fontFamily,
+        fontSize: 18,
     },
 });

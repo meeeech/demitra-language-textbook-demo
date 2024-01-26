@@ -30,9 +30,14 @@ export default async function SubsectionPage({
         return (
             <Stack spacing={4}>
                 <Box>
-                    <Typography variant="h3">{subsection_id}</Typography>
+                    <Typography variant="h4" component="h2">
+                        {subsection_id}
+                    </Typography>
                     <Divider />
-                    <Typography variant="h2">{`${title_en} - ${title_frgn}`}</Typography>
+                    <Typography
+                        variant="h3"
+                        component="h1"
+                    >{`${title_en} - ${title_frgn}`}</Typography>
                 </Box>
                 {page_items?.map((item) => (
                     <PageItem key={item.order} item={item} />

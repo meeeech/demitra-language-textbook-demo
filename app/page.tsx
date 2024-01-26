@@ -8,7 +8,9 @@ export default async function Home() {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <Typography variant="h1">Intermatik 2</Typography>
+                <Typography variant="h2" component="h1">
+                    Intermatik 2
+                </Typography>
             </Grid>
             {units.map((unit) => (
                 <UnitCard unit={unit} key={unit.unit_id} />
