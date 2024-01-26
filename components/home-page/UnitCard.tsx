@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 
 export default function UnitCard({ unit }: { unit: Unit }) {
     return (
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={6} lg={4}>
             <Card>
                 <CardContent>
                     <Typography sx={{ fontSize: 16 }} gutterBottom>
