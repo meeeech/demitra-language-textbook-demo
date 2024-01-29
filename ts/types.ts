@@ -29,11 +29,11 @@ type Subsection = {
     title_en: string;
     title_frgn: string;
     page_items?: Array<PageItem>;
-    next_subsection: string;
 };
 
 type Section = {
     section_id: string;
+    section_frgn_prefix: string;
     title: string;
     subsections: Array<Subsection>;
 };

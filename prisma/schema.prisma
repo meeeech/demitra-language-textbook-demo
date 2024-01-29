@@ -16,27 +16,29 @@ model page_items {
   content       Json           @db.Json
   type          page_item_type
   title         String?
-  subsection    subsections    @relation(fields: [subsection_id], references: [subsection_id], onDelete: NoAction, onUpdate: NoAction)
+  subsections   subsections    @relation(fields: [subsection_id], references: [subsection_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([subsection_id, order])
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model sections {
-  section_id  String        @id(map: "section_pkey")
-  unit_id     String
-  title       String
-  units       units         @relation(fields: [unit_id], references: [unit_id], onDelete: NoAction, onUpdate: NoAction)
-  subsections subsections[]
+  section_id          String        @id(map: "section_pkey")
+  unit_id             String
+  title               String
+  section_frgn_prefix String        @default("Teil")
+  units               units         @relation(fields: [unit_id], references: [unit_id], onDelete: NoAction, onUpdate: NoAction)
+  subsections         subsections[]
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model subsections {
-  subsection_id   String       @id(map: "subsection_pkey")
-  section_id      String
-  title_en        String
-  title_frgn      String
-  next_subsection String
-  page_items      page_items[]
-  sections        sections     @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
+  subsection_id String       @id(map: "subsection_pkey")
+  section_id    String
+  title_en      String
+  title_frgn    String
+  page_items    page_items[]
+  sections      sections     @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.

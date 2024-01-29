@@ -6,7 +6,6 @@ import PageItem from "@/components/subsection-page/PageItem";
 import Button from "@mui/material/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
 import SubsectionContainer from "@/components/subsection-page/SubsectionContainer";
 
 export default async function SubsectionPage({
@@ -17,16 +16,7 @@ export default async function SubsectionPage({
     const subsection = await getSubsectionById(params.subsection_id);
 
     if (subsection) {
-        const {
-            subsection_id,
-            title_en,
-            title_frgn,
-            page_items,
-            next_subsection,
-        } = subsection;
-
-        const nextSubsectionTitle =
-            await getSubsectionTitleById(next_subsection);
+        const { subsection_id, title_en, title_frgn, page_items } = subsection;
 
         return (
             <SubsectionContainer>
@@ -56,9 +46,8 @@ export default async function SubsectionPage({
                         Back to Unit Overview
                     </Button>
                     <Button
-                        href={`/subsection/${next_subsection}`}
                         endIcon={<ArrowForwardIcon />}
-                    >{`Next: ${nextSubsectionTitle}`}</Button>
+                    >{`Next: (Work in Progress)`}</Button>
                 </Box>
             </SubsectionContainer>
         );
