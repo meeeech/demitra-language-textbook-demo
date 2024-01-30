@@ -19,8 +19,8 @@ export default function QuestionGroup({
                     index={i}
                 />
             ))}
-            <Button onClick={() => setCheckedAnswers(true)}>
-                Check Answers
+            <Button onClick={() => setCheckedAnswers(!checkedAnswers)}>
+                {checkedAnswers ? "Try Again" : "Check Answers"}
             </Button>
         </>
     );
