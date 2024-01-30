@@ -30,7 +30,14 @@ function parseExercise() {
         } else if (text.toLowerCase().startsWith("title:")) {
             parsedData.title = text.split(":")[1].trim();
         } else if (text.toLowerCase().startsWith("instructions:")) {
-            parsedData.instructions = text.split(":")[1].trim();
+            var instructionsTextElement = child.asParagraph().editAsText();
+            parsedData.instructions = addSpansToBoldAndColoredText(
+                instructionsTextElement,
+                text,
+            );
+            parsedData.instructions = parsedData.instructions
+                .split(":")[1]
+                .trim();
         } else if (text.toLowerCase().startsWith("example:")) {
             parsedData.example = parseExample(body, i);
         } else if (text.toLowerCase().includes("{*multiple choice*}")) {

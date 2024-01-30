@@ -18,8 +18,8 @@ export default function MultipleChoiceQuestion({
     index: number;
     checkedAnswer: boolean;
 }) {
-    const rightAnswerMessage = "Correct.";
-    const wrongAnswerMessage = `Incorrect. Correct answer: ${question.correct_choice}`;
+    const rightAnswerMessage = "Correct!";
+    const wrongAnswerMessage = `Incorrect. Answer = ${question.correct_choice}`;
     const unansweredQuestionMessage = "You did not answer this question.";
     const [value, setValue] = useState("No Answer");
     const checkedAnswerId = `question-${index}-answer-check`;

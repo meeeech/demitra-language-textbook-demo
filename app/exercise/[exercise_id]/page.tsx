@@ -7,6 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import ExampleMultipleChoiceQuestion from "@/components/exercise-page/question-types/ExampleMCQuestion";
 import QuestionGroup from "@/components/exercise-page/QuestionGroup";
 import { getExerciseById } from "@/db/queries";
+import FormattedText from "@/components/subsection-page/page-item-types/FormattedText";
 
 export default async function ExercisePage({
     params,
@@ -33,7 +34,9 @@ export default async function ExercisePage({
                         <Typography sx={{ fontSize: 24 }} gutterBottom>
                             Instructions
                         </Typography>
-                        <Typography variant="h6">{instructions}</Typography>
+                        <Typography variant="h6">
+                            <FormattedText htmlString={instructions} />
+                        </Typography>
                     </CardContent>
                 </Card>
                 <Card raised>
