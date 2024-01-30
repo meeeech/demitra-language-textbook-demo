@@ -10,14 +10,14 @@ export default function UnitCard({ unit }: { unit: Unit }) {
         <Grid item xs={12} sm={6} lg={4}>
             <Card>
                 <CardContent>
-                    <Typography sx={{ fontSize: 16 }} gutterBottom>
+                    <Typography sx={{ fontSize: 20 }} gutterBottom>
                         {`${unit.unit_frgn_prefix} ${unit.unit_id}`}
                     </Typography>
                     <Typography variant="h5">{unit.title}</Typography>
                 </CardContent>
                 <CardActions>
                     <Button
-                        href={`/${unit.unit_id}`}
+                        href={`/unit/${unit.unit_id}`}
                     >{`Open Unit ${unit.unit_id}`}</Button>
                 </CardActions>
             </Card>

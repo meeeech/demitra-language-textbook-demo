@@ -29,6 +29,11 @@ export async function getUnitById(unitId: string): Promise<Unit | null> {
                                 subsection_id: "asc",
                             },
                         },
+                        exercises: {
+                            orderBy: {
+                                exercise_id: "asc",
+                            },
+                        },
                     },
                 },
             },
@@ -79,6 +84,45 @@ export async function getSubsectionById(
         return null;
     } catch (error) {
         console.error(`Error retrieving subsection: ${error}`);
+        return null;
+    } finally {
+        await prisma.$disconnect();
+    }
+}
+
+export async function getExerciseById(
+    exerciseId: string,
+): Promise<Exercise | null> {
+    try {
+        const exercise = await prisma.exercises.findUnique({
+            where: {
+                exercise_id: exerciseId,
+            },
+            include: {
+                questions: {
+                    orderBy: {
+                        question_id: "asc",
+                    },
+                },
+            },
+        });
+
+        if (exercise) {
+            const transformedExercise: Exercise = {
+                ...exercise,
+                questions: exercise.questions.map((q) => ({
+                    question: q.question,
+                    type: q.type as QuestionType,
+                    correct_choice: q.correct_choice,
+                    choices: q.choices as Array<string>,
+                })),
+            };
+
+            return transformedExercise;
+        }
+        return null;
+    } catch (error) {
+        console.error(`Error retrieving exercise: ${error}`);
         return null;
     } finally {
         await prisma.$disconnect();

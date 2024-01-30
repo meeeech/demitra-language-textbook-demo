@@ -1,4 +1,4 @@
-function parseDocument() {
+function parseSectionList() {
     var doc = DocumentApp.getActiveDocument();
     var body = doc.getBody();
     var text = body.getText();

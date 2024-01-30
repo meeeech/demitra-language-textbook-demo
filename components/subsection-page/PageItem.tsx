@@ -1,13 +1,14 @@
 import AudioTable from "./page-item-types/AudioTable";
-import Paragraph from "./page-item-types/Paragraph";
+import FormattedText from "./page-item-types/FormattedText";
 import PlainTable from "./page-item-types/PlainTable";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 export default function PageItem({ item }: { item: PageItem }) {
     let content;
     switch (item.type as string) {
-        case "paragraph":
-            content = <Paragraph htmlString={item.content as string} />;
+        case "formatted_text":
+            content = <FormattedText htmlString={item.content as string} />;
             break;
         case "audio_table":
             content = <AudioTable tableContent={item.content as AudioTable} />;
@@ -19,5 +20,12 @@ export default function PageItem({ item }: { item: PageItem }) {
             content = <pre>{JSON.stringify(item.content, null, 2)}</pre>;
     }
 
-    return <Box>{content}</Box>;
+    return item.title ? (
+        <Box>
+            <Typography variant="h6">{item.title}</Typography>
+            {content}
+        </Box>
+    ) : (
+        content
+    );
 }

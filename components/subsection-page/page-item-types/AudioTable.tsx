@@ -1,7 +1,7 @@
 import Table from "@mui/material/Table";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import Paragraph from "./Paragraph";
+import FormattedText from "./FormattedText";
 import AudioButton from "../AudioButton";
 import TableBody from "@mui/material/TableBody";
 
@@ -19,10 +19,10 @@ export default function AudioTable({
                             <AudioButton audioUrl={tableRow.audio_file} />
                         </TableCell>
                         <TableCell>
-                            <Paragraph htmlString={tableRow.text_frgn} />
+                            <FormattedText htmlString={tableRow.text_frgn} />
                         </TableCell>
                         <TableCell>
-                            <Paragraph htmlString={tableRow.text_en} />
+                            <FormattedText htmlString={tableRow.text_en} />
                         </TableCell>
                     </TableRow>
                 ))}

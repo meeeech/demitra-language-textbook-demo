@@ -5,37 +5,43 @@ export async function POST(request) {
         const requestBody = await request.json();
 
         return await prisma.$transaction(async (prisma) => {
-            // Insert into subsections table
-            const result = await prisma.subsections.create({
-                data: {
+            // Update the subsection
+            const updatedSubsection = await prisma.subsections.update({
+                where: {
                     subsection_id: requestBody.subsection_id,
+                },
+                data: {
                     title_en: requestBody.title_en,
                     title_frgn: requestBody.title_frgn,
-                    section_id: requestBody.section_id,
                 },
             });
 
-            // Insert into page_items table
-            const pageItemsData = requestBody.page_items?.map((item) => {
-                return {
+            // Delete all existing page items for the subsection
+            await prisma.page_items.deleteMany({
+                where: {
                     subsection_id: requestBody.subsection_id,
-                    order: item.order,
-                    type: item.type,
-                    content: item.content,
-                    title: item.title,
-                };
+                },
             });
+
+            // Create new page items
+            const pageItemsData = requestBody.page_items?.map((item) => ({
+                subsection_id: requestBody.subsection_id,
+                order: item.order,
+                type: item.type,
+                content: item.content, // Assuming content is compatible with the Prisma schema
+                title: item.title,
+            }));
 
             if (pageItemsData) {
                 await prisma.page_items.createMany({
                     data: pageItemsData,
-                    skipDuplicates: true,
+                    skipDuplicates: true, // Adjust this based on your requirements
                 });
             }
 
             return new Response(
                 JSON.stringify({
-                    message: "Subsection and Page Items inserted successfully",
+                    message: "Subsection and Page Items updated successfully",
                     status: 200,
                 }),
                 {
@@ -50,7 +56,7 @@ export async function POST(request) {
         console.error("Error in API operation:", error);
         return new Response(
             JSON.stringify({
-                message: "Error in inserting data",
+                message: "Error in updating data",
                 error: error.message,
                 status: 500,
             }),

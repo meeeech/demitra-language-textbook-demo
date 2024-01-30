@@ -5,37 +5,38 @@ export async function POST(request) {
         const requestBody = await request.json();
 
         return await prisma.$transaction(async (prisma) => {
-            // Insert into subsections table
-            const result = await prisma.subsections.create({
+            // Insert into exercise table
+            const result = await prisma.exercises.create({
                 data: {
-                    subsection_id: requestBody.subsection_id,
-                    title_en: requestBody.title_en,
-                    title_frgn: requestBody.title_frgn,
+                    exercise_id: requestBody.exercise_id,
+                    title: requestBody.title,
+                    instructions: requestBody.instructions,
+                    example: requestBody.example,
                     section_id: requestBody.section_id,
                 },
             });
 
-            // Insert into page_items table
-            const pageItemsData = requestBody.page_items?.map((item) => {
+            // Insert into questions table
+            const questionsData = requestBody.questions?.map((question) => {
                 return {
-                    subsection_id: requestBody.subsection_id,
-                    order: item.order,
-                    type: item.type,
-                    content: item.content,
-                    title: item.title,
+                    exercise_id: requestBody.exercise_id,
+                    type: question.type,
+                    choices: question.choices,
+                    correct_choice: question.correct_choice,
+                    question: question.question,
                 };
             });
 
-            if (pageItemsData) {
-                await prisma.page_items.createMany({
-                    data: pageItemsData,
+            if (questionsData) {
+                await prisma.questions.createMany({
+                    data: questionsData,
                     skipDuplicates: true,
                 });
             }
 
             return new Response(
                 JSON.stringify({
-                    message: "Subsection and Page Items inserted successfully",
+                    message: "Exercise and Questions inserted successfully",
                     status: 200,
                 }),
                 {

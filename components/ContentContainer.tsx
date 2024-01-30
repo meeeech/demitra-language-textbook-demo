@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 
-export default function SubsectionContainer({
+export default function ContentContainer({
     children,
 }: {
     children: React.ReactNode;

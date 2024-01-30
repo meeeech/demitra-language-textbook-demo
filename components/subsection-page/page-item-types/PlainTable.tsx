@@ -3,7 +3,7 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
 import TableHead from "@mui/material/TableHead";
-import Paragraph from "./Paragraph";
+import FormattedText from "./FormattedText";
 
 export default function PlainTable({
     tableContent,
@@ -25,7 +25,7 @@ export default function PlainTable({
                     <TableRow key={i}>
                         {Object.values(tableRow).map((cell, i) => (
                             <TableCell key={i}>
-                                <Paragraph htmlString={cell} />
+                                <FormattedText htmlString={cell} />
                             </TableCell>
                         ))}
                     </TableRow>

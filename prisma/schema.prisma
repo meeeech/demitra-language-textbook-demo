@@ -14,8 +14,8 @@ model page_items {
   subsection_id String
   order         Int            @db.SmallInt
   content       Json           @db.Json
-  type          page_item_type
   title         String?
+  type          page_item_type
   subsections   subsections    @relation(fields: [subsection_id], references: [subsection_id], onDelete: NoAction, onUpdate: NoAction)
 
   @@unique([subsection_id, order])
@@ -27,6 +27,7 @@ model sections {
   unit_id             String
   title               String
   section_frgn_prefix String        @default("Teil")
+  exercises           exercises[]
   units               units         @relation(fields: [unit_id], references: [unit_id], onDelete: NoAction, onUpdate: NoAction)
   subsections         subsections[]
 }
@@ -36,7 +37,7 @@ model subsections {
   subsection_id String       @id(map: "subsection_pkey")
   section_id    String
   title_en      String
-  title_frgn    String
+  title_frgn    String?
   page_items    page_items[]
   sections      sections     @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
 }
@@ -49,9 +50,33 @@ model units {
   sections         sections[]
 }
 
+model exercises {
+  exercise_id  String      @id
+  section_id   String
+  title        String
+  instructions String
+  example      Json?       @db.Json
+  sections     sections    @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
+  questions    questions[]
+}
+
+model questions {
+  question_id    BigInt        @id @default(autoincrement())
+  question       String
+  exercise_id    String
+  choices        Json?         @db.Json
+  correct_choice String?
+  type           question_type
+  exercises      exercises     @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
 enum page_item_type {
-  paragraph
   audio_table
   plain_table
-  text
+  formatted_text
+}
+
+enum question_type {
+  multiple_choice
+  free_response
 }

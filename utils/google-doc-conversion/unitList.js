@@ -1,4 +1,4 @@
-function parseDocument() {
+function parseUnitList() {
     var doc = DocumentApp.getActiveDocument();
     var body = doc.getBody();
     var text = body.getText();

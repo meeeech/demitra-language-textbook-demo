@@ -10,12 +10,16 @@ export default async function Home() {
         <Grid container spacing={2}>
             <Grid item xs={12}>
                 <Typography variant="h2" component="h1">
-                    Intermatik 2
+                    Zuzuzurren
                 </Typography>
             </Grid>
-            {units.map((unit) => (
-                <UnitCard unit={unit} key={unit.unit_id} />
-            ))}
+            {units.length > 0 ? (
+                units.map((unit) => <UnitCard unit={unit} key={unit.unit_id} />)
+            ) : (
+                <Grid item>
+                    <h1>No units found.</h1>
+                </Grid>
+            )}
         </Grid>
     );
 }

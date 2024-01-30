@@ -7,13 +7,16 @@ import Alert from "@mui/material/Alert";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 import { useState } from "react";
 
-const dbTables = ["Units", "Subsections", "Sections"];
+const dbTables = ["Units", "Subsections", "Sections", "Exercises"];
 const actionTypes = ["Insert Rows", "Update Row"];
 
 type ActionType = "Insert Rows" | "Update Row";
-type TableType = "Units" | "Sections" | "Subsections";
+type TableType = "Units" | "Sections" | "Subsections" | "Exercises";
 
 // prettier-ignore
 const routeMapping = {
@@ -21,11 +24,13 @@ const routeMapping = {
         "Units": "/api/admin/insert-units",
         "Sections": "/api/admin/insert-sections",
         "Subsections": "/api/admin/insert-subsection",
+        "Exercises": "/api/admin/insert-exercise"
     },
     "Update Row": {
         "Units": "/api/admin/update-unit",
         "Sections": "/api/admin/update-section",
         "Subsections": "/api/admin/update-subsection",
+        "Exercises": "/api/admin/update-exercise"
     },
 };
 
@@ -72,6 +77,15 @@ export default function UpdateDBPage() {
 
     return (
         <Stack spacing={3}>
+            <Box>
+                <Typography variant="h3">Update Content Database</Typography>
+                <Typography variant="h6" gutterBottom>
+                    Choose a database table and action from the dropdowns below.
+                    Insert the corresponding JSON to be sent to the database
+                    into the text field.
+                </Typography>
+                <Divider sx={{ borderWidth: "1px" }} />
+            </Box>
             <FormControl fullWidth>
                 <InputLabel id="action-select-label">Action</InputLabel>
                 <Select
