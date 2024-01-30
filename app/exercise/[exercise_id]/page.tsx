@@ -8,6 +8,9 @@ import ExampleMultipleChoiceQuestion from "@/components/exercise-page/question-t
 import QuestionGroup from "@/components/exercise-page/QuestionGroup";
 import { getExerciseById } from "@/db/queries";
 import FormattedText from "@/components/subsection-page/page-item-types/FormattedText";
+import Button from "@mui/material/Button";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export default async function ExercisePage({
     params,
@@ -48,6 +51,22 @@ export default async function ExercisePage({
                     </CardContent>
                 </Card>
                 <QuestionGroup questions={questions ?? []} />
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    <Button
+                        startIcon={<ArrowBackIcon />}
+                        href={`/unit/${exercise_id.split(".")[0]}`}
+                    >
+                        Back to Unit Overview
+                    </Button>
+                    <Button
+                        endIcon={<ArrowForwardIcon />}
+                    >{`Next: (Work in Progress)`}</Button>
+                </Box>
             </ContentContainer>
         );
     } else {

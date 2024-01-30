@@ -41,7 +41,7 @@ export default async function SubsectionPage({
                 >
                     <Button
                         startIcon={<ArrowBackIcon />}
-                        href={`/unit/${subsection_id.substring(0, 1)}`}
+                        href={`/unit/${subsection_id.split(".")[0]}`}
                     >
                         Back to Unit Overview
                     </Button>
