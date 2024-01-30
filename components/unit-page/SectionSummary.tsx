@@ -15,7 +15,7 @@ export default function SectionSummary({ section }: { section: Section }) {
                 aria-controls={`section ${section.section_id} content`}
                 id={`${section.section_id}-header`}
             >
-                <Typography variant="h6">{`${section.section_id} ${section.title}`}</Typography>
+                <Typography variant="h6">{`${section.section_frgn_prefix} ${section.section_id}: ${section.title}`}</Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ padding: 0 }}>
                 {section.subsections?.map((subsection) => (
