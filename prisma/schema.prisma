@@ -51,23 +51,28 @@ model units {
 }
 
 model exercises {
-  exercise_id  String      @id
+  exercise_id  String           @id
   section_id   String
   title        String
   instructions String
-  example      Json?       @db.Json
-  sections     sections    @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
+  example      Json?            @db.Json
+  answer_type  answer_type?
+  mc_control   mc_control_type?
+  fitb         Boolean?
+  sections     sections         @relation(fields: [section_id], references: [section_id], onDelete: NoAction, onUpdate: NoAction)
   questions    questions[]
 }
 
 model questions {
-  question_id    BigInt        @id @default(autoincrement())
+  question_id    BigInt           @id @default(autoincrement())
   question       String
   exercise_id    String
-  choices        Json?         @db.Json
-  correct_choice String?
-  type           question_type
-  exercises      exercises     @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
+  choices        Json?            @db.Json
+  correct_answer String?
+  fitb           Boolean
+  answer_type    answer_type
+  mc_control     mc_control_type?
+  exercises      exercises        @relation(fields: [exercise_id], references: [exercise_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 enum page_item_type {
@@ -76,7 +81,14 @@ enum page_item_type {
   formatted_text
 }
 
-enum question_type {
+enum answer_type {
   multiple_choice
+  text_input
+  matching
   free_response
+}
+
+enum mc_control_type {
+  radio
+  select
 }

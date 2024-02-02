@@ -24,8 +24,11 @@ type Exercise = {
     exercise_id: string;
     title: string;
     instructions: string;
-    example: any;
+    example?: any | null;
     questions?: Array<Question> | null;
+    fitb?: boolean | null;
+    mc_control?: MultipleChoiceControlType | null;
+    answer_type?: AnswerType | null;
 };
 
 type PageItem = {
@@ -37,9 +40,11 @@ type PageItem = {
 
 type Question = {
     question: string;
-    type: QuestionType;
+    fitb: boolean;
+    answer_type: AnswerType;
     choices?: Array<string> | null;
-    correct_choice?: string | null;
+    correct_answer?: string | null;
+    mc_control?: MultipleChoiceControlType | null;
 };
 
 enum PageItemType {
@@ -48,9 +53,16 @@ enum PageItemType {
     FormattedText = "formatted_text",
 }
 
-enum QuestionType {
+enum AnswerType {
     MultipleChoice = "multiple_choice",
     FreeResponse = "free_response",
+    TextInput = "text_input",
+    Matching = "matching",
+}
+
+enum MultipleChoiceControlType {
+    Radio = "radio",
+    Select = "select",
 }
 
 type AudioTable = Array<AudioTableRow>;

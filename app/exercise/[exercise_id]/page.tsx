@@ -19,8 +19,14 @@ export default async function ExercisePage({
 }) {
     const exercise = await getExerciseById(params.exercise_id);
     if (exercise) {
-        const { title, instructions, example, questions, exercise_id } =
-            exercise;
+        const {
+            title,
+            instructions,
+            example,
+            questions,
+            exercise_id,
+            mc_control,
+        } = exercise;
         return (
             <ContentContainer>
                 <Box>
@@ -42,14 +48,19 @@ export default async function ExercisePage({
                         </Typography>
                     </CardContent>
                 </Card>
-                <Card raised>
-                    <CardContent>
-                        <Typography sx={{ fontSize: 24 }} gutterBottom>
-                            Example
-                        </Typography>
-                        <ExampleMultipleChoiceQuestion example={example} />
-                    </CardContent>
-                </Card>
+                {example && (
+                    <Card raised>
+                        <CardContent>
+                            <Typography sx={{ fontSize: 24 }} gutterBottom>
+                                Example
+                            </Typography>
+                            <ExampleMultipleChoiceQuestion
+                                example={example}
+                                control={mc_control as string}
+                            />
+                        </CardContent>
+                    </Card>
+                )}
                 <QuestionGroup questions={questions ?? []} />
                 <Box
                     sx={{

@@ -1,4 +1,4 @@
-import prisma from "@/db/prismaClient";
+import prisma from "@/db/prisma-client";
 
 export async function getAllUnits(): Promise<Array<Unit>> {
     try {
@@ -39,7 +39,7 @@ export async function getUnitById(unitId: string): Promise<Unit | null> {
             },
         });
 
-        return unit;
+        return unit as Unit;
     } catch (error) {
         console.error("Error fetching unit:", error);
         throw error;
@@ -65,23 +65,7 @@ export async function getSubsectionById(
             },
         });
 
-        if (subsection) {
-            const transformedSubsection: Subsection = {
-                ...subsection,
-                page_items: subsection.page_items.map((item) => ({
-                    order: item.order,
-                    type: item.type as PageItemType,
-                    title: item.title ?? undefined,
-                    content: item.content as
-                        | string
-                        | AudioTableRow[]
-                        | PlainTable,
-                })),
-            };
-
-            return transformedSubsection;
-        }
-        return null;
+        return subsection as Subsection;
     } catch (error) {
         console.error(`Error retrieving subsection: ${error}`);
         return null;
@@ -107,20 +91,7 @@ export async function getExerciseById(
             },
         });
 
-        if (exercise) {
-            const transformedExercise: Exercise = {
-                ...exercise,
-                questions: exercise.questions.map((q) => ({
-                    question: q.question,
-                    type: q.type as QuestionType,
-                    correct_choice: q.correct_choice,
-                    choices: q.choices as Array<string>,
-                })),
-            };
-
-            return transformedExercise;
-        }
-        return null;
+        return exercise as Exercise;
     } catch (error) {
         console.error(`Error retrieving exercise: ${error}`);
         return null;

@@ -1,4 +1,4 @@
-import prisma from "@/db/prismaClient";
+import prisma from "@/db/prisma-client";
 
 export async function POST(request) {
     try {

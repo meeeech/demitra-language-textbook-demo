@@ -1,4 +1,4 @@
-import prisma from "@/db/prismaClient";
+import prisma from "@/db/prisma-client";
 
 export async function POST(request) {
     try {
@@ -27,10 +27,12 @@ export async function POST(request) {
             // Create new questions
             const questionsData = requestBody.questions?.map((question) => ({
                 exercise_id: requestBody.exercise_id,
-                type: question.type,
+                answer_type: question.answer_type,
                 choices: question.choices,
-                correct_choice: question.correct_choice,
+                correct_answer: question.correct_answer,
                 question: question.question,
+                fitb: question.fitb,
+                mc_control: question.mc_control,
             }));
 
             if (questionsData) {

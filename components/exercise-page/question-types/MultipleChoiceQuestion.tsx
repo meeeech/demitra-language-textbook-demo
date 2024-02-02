@@ -6,7 +6,8 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Alert from "@mui/material/Alert";
 import FormattedText from "@/components/subsection-page/page-item-types/FormattedText";
-import Box from "@mui/material/Box";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import { useState } from "react";
 
 export default function MultipleChoiceQuestion({
@@ -19,13 +20,13 @@ export default function MultipleChoiceQuestion({
     checkedAnswer: boolean;
 }) {
     const rightAnswerMessage = "Correct!";
-    const wrongAnswerMessage = `Incorrect. Answer = ${question.correct_choice}`;
+    const wrongAnswerMessage = `Incorrect. Answer = ${question.correct_answer}`;
     const unansweredQuestionMessage = "You did not answer this question.";
     const [value, setValue] = useState("No Answer");
     const checkedAnswerId = `question-${index}-answer-check`;
 
     const CheckedAnswerMessage = () =>
-        value === question.correct_choice ? (
+        value === question.correct_answer ? (
             <Alert severity="success" id={checkedAnswerId}>
                 {rightAnswerMessage}
             </Alert>
@@ -39,31 +40,53 @@ export default function MultipleChoiceQuestion({
             </Alert>
         );
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setValue((event.target as HTMLInputElement).value);
+    };
+
+    const handleSelectChange = (event: SelectChangeEvent) => {
+        setValue(event.target.value);
     };
 
     return (
         <FormControl>
-            <FormLabel id={`question-${index}-radio-buttons-group`}>
+            <FormLabel id={`question-${index}`}>
                 <FormattedText
                     htmlString={`${index + 1}. ${question.question}`}
                 />
             </FormLabel>
-            <RadioGroup
-                aria-labelledby={`question-${index}-radio-buttons-group`}
-                value={value}
-                onChange={handleChange}
-            >
-                {question.choices?.map((choice) => (
-                    <FormControlLabel
-                        value={choice}
-                        key={choice}
-                        control={<Radio />}
-                        label={choice}
-                    />
-                ))}
-            </RadioGroup>
+            {question.mc_control === "select" && (
+                <Select
+                    value={value}
+                    onChange={handleSelectChange}
+                    id={`question-${index}-answer-control-select`}
+                    aria-labelledby={`question-${index}`}
+                    displayEmpty
+                >
+                    {question.choices?.map((choice) => (
+                        <MenuItem value={choice} key={choice}>
+                            {choice}
+                        </MenuItem>
+                    ))}
+                </Select>
+            )}
+            {question.mc_control === "radio" && (
+                <RadioGroup
+                    aria-labelledby={`question-${index}`}
+                    value={value}
+                    onChange={handleRadioChange}
+                    id={`question-${index}-answer-control-radio`}
+                >
+                    {question.choices?.map((choice) => (
+                        <FormControlLabel
+                            value={choice}
+                            key={choice}
+                            control={<Radio />}
+                            label={choice}
+                        />
+                    ))}
+                </RadioGroup>
+            )}
             {checkedAnswer && <CheckedAnswerMessage />}
         </FormControl>
     );
