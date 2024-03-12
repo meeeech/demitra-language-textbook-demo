@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 
 export const metadata: Metadata = {
-    title: "Zuzuzurren",
+    title: "Intermatik 2024",
     description: "An interactive German grammar review",
 };
 

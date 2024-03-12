@@ -72,8 +72,10 @@ function parseExercise() {
                             text,
                         ),
                         choices: [],
-                        correct_choice: "",
-                        type: "multiple_choice",
+                        correct_answer: "",
+                        answer_type: "multiple_choice",
+                        fitb: false,
+                        mc_control: "radio",
                     };
                     processingQuestion = true;
                 } else {
@@ -81,7 +83,7 @@ function parseExercise() {
                     var choiceText = text.replace(" {*correct*}", "");
                     currentQuestion.choices.push(choiceText);
                     if (isCorrect) {
-                        currentQuestion.correct_choice = choiceText;
+                        currentQuestion.correct_answer = choiceText;
                     }
                 }
             }
@@ -133,6 +135,6 @@ function parseExample(body, exampleIndex) {
     return {
         question: formattedQuestion,
         choices: choices,
-        correct_choice: correctChoice,
+        correct_answer: correctChoice,
     };
 }

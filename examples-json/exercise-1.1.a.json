@@ -1,0 +1,81 @@
+{
+    "exercise_id": "1.1.a_select",
+    "title": "What is the grammatical category of each word?",
+    "instructions": "Read each sentence carefully. Then identify the <span class='frgn'>red</span> words. To what category do they belong? Choose a, b, or c. Follow the example.",
+    "example": {
+        "question": "In Deutschland gibt es nicht so viele <span class='frgn'>Studentenheime</span> wie in Amerika.",
+        "choices": ["singular noun", "plural noun", "singular pronoun"],
+        "correct_answer": "plural noun"
+    },
+    "questions": [
+        {
+            "question": "Dieses Semester belege <span class='frgn'>ich</span> fünf Kurse.",
+            "fitb": false,
+            "choices": ["pronoun", "adverb", "adjective"],
+            "mc_control": "select",
+            "correct_answer": "pronoun",
+            "answer_type": "multiple_choice"
+        },
+        {
+            "question": "Es bleibt mir nicht viel Zeit zum Entspannen <span class='frgn'>und</span> ich muß viel lesen.",
+            "fitb": false,
+            "choices": ["preposition", "adverb", "conjunction"],
+            "mc_control": "select",
+            "correct_answer": "conjunction",
+            "answer_type": "multiple_choice"
+        },
+        {
+            "question": "Meine Lieblingsklasse ist meine Mathematikklasse. Sie ist jedoch sehr <span class='frgn'>schwer</span>.",
+            "fitb": false,
+            "choices": ["noun", "adjective", "verb"],
+            "mc_control": "select",
+            "correct_answer": "adjective",
+            "answer_type": "multiple_choice"
+        },
+        {
+            "question": "Montag, Dienstag, Mittwoch und Freitag habe ich eine Deutschstunde <span class='frgn'>um neun Uhr</span>.",
+            "fitb": false,
+            "choices": [
+                "adverb of manner",
+                "adverb of place",
+                "adverb of time"
+            ],
+            "mc_control": "select",
+            "correct_answer": "adverb of time",
+            "answer_type": "multiple_choice"
+        },
+        {
+            "question": "Mein Hauptfach <span class='frgn'>ist</span> Ökonomie und mein Nebenfach <span class='frgn'>ist</span> Deutsch.",
+            "fitb": false,
+            "choices": ["adjective", "verb", "pronoun"],
+            "mc_control": "select",
+            "correct_answer": "verb",
+            "answer_type": "multiple_choice"
+        },
+        {
+            "question": "Machmal gehen wir in <span class='frgn'>ein</span> Restaurant mit unserem Deutschprofessor und wir versuchen, nur Deutsch zu sprechen.",
+            "fitb": false,
+            "choices": ["definite article", "indefinite article", "pronoun"],
+            "mc_control": "select",
+            "correct_answer": "indefinite article",
+            "answer_type": "multiple_choice"
+        },
+        {
+            "question": "Die meisten Studenten sprechen noch nicht <span class='frgn'>fließend</span> Deutsch.",
+            "fitb": false,
+            "choices": ["adverb", "adjective", "conjunction"],
+            "mc_control": "select",
+            "correct_answer": "adverb",
+            "answer_type": "multiple_choice"
+        },
+        {
+            "question": "Deutschland ist ein <span class='frgn'>interessantes</span> Land und ich möchte dort ein Jahr studieren.",
+            "fitb": false,
+            "choices": ["adverb", "adjective", "Pronoun"],
+            "mc_control": "select",
+            "correct_answer": "adjective",
+            "answer_type": "multiple_choice"
+        }
+    ],
+    "section_id": "1.1"
+}

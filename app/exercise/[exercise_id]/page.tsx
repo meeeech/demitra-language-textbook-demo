@@ -56,7 +56,7 @@ export default async function ExercisePage({
                             </Typography>
                             <ExampleMultipleChoiceQuestion
                                 example={example}
-                                control={mc_control as string}
+                                control={"radio"}
                             />
                         </CardContent>
                     </Card>

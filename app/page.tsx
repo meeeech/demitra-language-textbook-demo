@@ -10,7 +10,7 @@ export default async function Home() {
         <Grid container spacing={2}>
             <Grid item xs={12}>
                 <Typography variant="h2" component="h1">
-                    Zuzuzurren
+                    Intermatik 2024
                 </Typography>
             </Grid>
             {units.length > 0 ? (
